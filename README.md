@@ -155,7 +155,7 @@ There are two different case classes at `tests.py`.
 `InvoiceCreateAPITest` is checking the insert operations for invoice collection.
 `ContactUpdateAPITest` checks whether the update operation performed is correct.
 
-
+```bash
 Using a test mongo database
 Found 2 test(s).
 Creating test database for alias 'default'...
@@ -166,13 +166,13 @@ Ran 2 tests in 0.020s
 
 OK
 Destroying test database for alias 'default'...
-
+```
 
 ### For Further Study
 
 The project repository also has `docker-compose.yml` and `Dockerfile`. It runs inside a container without any error. However, I couldn't do any insert operation through the MongoDB. I'll find the reason and fix it.
 
-One of the constraints of the project was the insert and update times and their ratio. Create invoice process should be 30 times faster then updating a contact.I'll try find a faster create operation to solve the issue.
+One of the constraints of the project was the insert and update times and their ratio. Create invoice process should be 30 times faster then updating a contact. I'll try find a faster create operation to solve the issue.
 
 
 
