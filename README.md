@@ -11,7 +11,27 @@ The following table shows overview of the REST APIs:
 |     POST      | api/invoiceCreate/     |              create new Invoice                 |
 |     POST      | api/contactCreate/     |              create new Contact                 |
 |     PUT       | api/contactUpdate/_id  |            update existing Contact              |
-|     PUT       | api/contactSuggest/    | suggest existing Contacts with confidence ratio |
+|     GET       | api/contactSuggest/    | suggest existing Contacts with confidence ratio |
 
 ### Installation
+
+To get the project up and running in your local, go to the file location you want to install and run the following command.
+
+```python
+git clone https://github.com/oguzkirazdiken/InvoiceAPI.git
+```
+
+It is highly recommended to run on virtual environment. Firstly, set your virtual env and activate it.
+
+```python
+python3 -m venv env
+source env/bin/activate
+```
+
+Change current working directory to the directory where requirements.txt is located and run the following cone in your shell.
+
+```python
+cd InvoiceApi
+pip3 install -r requirements.txt
+```
 
