@@ -4,9 +4,9 @@ In this project, I have created a RESTful web service that can store the Invoice
 
 API Views, TestCases are developed on [Django Rest Framework](https://www.django-rest-framework.org/) and the data model is provided with the help of [mongoengine](http://mongoengine.org/) connector.
 
-The following table shows overview of the REST APIs.
+The following table shows overview of the REST APIs:
 
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+|    Methods    |     Urls          |       Actions      |
+| ------------- | ----------------  | ------------------ |
+|     POST      | api/invoiceCreate | create new Invoice |
+| Content Cell  | Content Cell      | Content Cell       |
