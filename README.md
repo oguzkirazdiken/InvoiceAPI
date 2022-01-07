@@ -34,4 +34,102 @@ Change current working directory to the directory where requirements.txt is loca
 cd InvoiceApi
 pip3 install -r requirements.txt
 ```
+If you previously installed MongoDB and started to run a database on your local, the mongoengine itself starts a database instance automatically when you give the runserver command. To be sure, please check if you installed MongoDB and you have a running database. Helpful documentation [here](https://mongoing.com/docs/tutorial/install-mongodb-on-os-x.html).
+
+The mongoengine doesn't require any migration process like other MongoDB Connectors. But we have an spare SQLite database. So it is good to start with initial migration before running our Django Rest API.
+
+```python
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+
+```python
+python3 manage.py runserver
+```
+### Data Ingestion
+
+Example payload for creating invoice:
+
+```json
+{
+    "_id": "be015d569de9",
+    "organization": "bc93b755a48f",
+    "createdAt": "2021-10-11T09:53:31.339Z",
+    "updatedAt": "2021-11-29T13:15:19.500Z",
+    "amount": {
+        "currencyCode": "EUR",
+        "value": 26.3
+    },
+    "contact": {
+        "_id": "845ec3d17501",
+        "iban": "DE88100500001310032358",
+        "name": "Oguz Kirazdiken",
+        "organization": "bc93b755a48f"
+    },
+    "invoiceDate": "2021-10-11T00:00:00.000Z",
+    "invoiceId": "c8b6299890f3"
+}
+```
+So the data model should be capable of storing collections that's why mongoengine is a better option for MongoDB connector.
+
+The Invoice payload also consists of contact information. Additional `create` method is added to `InvoiceSerializer` to extract that data and store it in the contact collections.
+
+```python
+def create(self, validated_data):
+    contact_data = validated_data['contact']
+    invoice = Invoice.objects.create(**validated_data)
+    Contact.objects.create(**contact_data)
+    return invoice
+```
+
+Invoice creating process takes 63ms on average.
+
+
+Example payload for creating and updating contact:
+
+```json
+{
+    "_id": "845ec3d17501",
+    "iban": "DE88100500001310032358",
+    "name": "Oguz Kirazdiken New",
+    "organization": "bc93b755a48f"
+}
+```
+Updating contact takes 118ms on average.
+
+Updating and creating contact has the same payload type but should be requested for different URLs with different methods.
+
+|    Methods    |         Urls                    |
+| ------------- | ------------------------------  |
+|     POST      | api/contactCreate/              |
+|     PUT       | api/contactUpdate/845ec3d17501  |
+
+
+### Contact Suggestion
+The payload for contact suggestion endpoint need to have two parts. `contactName` which can be partial input for any name and `organization` ID.
+The aim of the endpoint is returning the most equivalent contacts with some certain confidence ratio.
+
+
+
+
+### Test Cases
+
+
+
+### For Further Study
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
