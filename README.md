@@ -106,29 +106,73 @@ Updating and creating contact has the same payload type but should be requested 
 
 
 ### Contact Suggestion
-The payload for contact suggestion endpoint need to have two parts. `contactName` which can be partial input for any name and `organization` ID.
-The aim of the endpoint is returning the most equivalent contacts with some certain confidence ratio.
+Payload for the contact suggestion endpoint needs to have two parts. `contactName` can be a partial input for any name and `organization` is a company representitive Id string. The aim of the endpoint is returning the most equivalent contacts with some certain confidence ratio.
 
+GET Request Payload:
 
+```json
+{
+    "contactName": "Kirazdiken",
+    "organization": "bc93b755a48f"
+}
+```
 
+Response:
+
+```json
+[
+    {
+        "suggestedContact": "Ayla Kirazdiken",
+        "confidence": 0.5
+    },
+    {
+        "suggestedContact": "Oguz Kirazdikene",
+        "confidence": 0.5
+    }
+]
+```
 
 ### Test Cases
 
+Two different databases are defined for MongoDB. `is_test()` method converts the default database to test before running test cases.
+
+```python
+MONGODB_DATABASES = {
+    "default": {
+        "name": "invoice_database",
+        "host": "localhost",
+        "port": 27017
+    },
+    "test": {
+        "name": "invoice_database_test",
+        "host": "localhost",
+        "port": 27017,
+    }
+}
+```
+
+There are two different case classes at `tests.py`. 
+`InvoiceCreateAPITest` is checking the insert operations for invoice collection.
+`ContactUpdateAPITest` checks whether the update operation performed is correct.
+
+
+Using a test mongo database
+Found 2 test(s).
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.020s
+
+OK
+Destroying test database for alias 'default'...
 
 
 ### For Further Study
 
+The project repository also has `docker-compose.yml` and `Dockerfile`. It runs inside a container without any error. However, I couldn't do any insert operation through the MongoDB. I'll find the reason and fix it.
 
-
-
-
-
-
-
-
-
-
-
+One of the constraints of the project was the insert and update times and their ratio. Create invoice process should be 30 times faster then updating a contact.I'll try find a faster create operation to solve the issue.
 
 
 
