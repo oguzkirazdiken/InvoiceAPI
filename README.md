@@ -14,3 +14,4 @@ The following table shows overview of the REST APIs:
 |     PUT       | api/contactSuggest/    | suggest existing Contacts with confidence ratio |
 
 ### Installation
+
