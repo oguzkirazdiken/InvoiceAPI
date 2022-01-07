@@ -6,7 +6,9 @@ API Views, TestCases are developed on [Django Rest Framework](https://www.django
 
 The following table shows overview of the REST APIs:
 
-|    Methods    |     Urls          |       Actions      |
-| ------------- | ----------------  | ------------------ |
-|     POST      | api/invoiceCreate | create new Invoice |
-| Content Cell  | Content Cell      | Content Cell       |
+|    Methods    |         Urls           |                    Actions                      |
+| ------------- | ---------------------  | ----------------------------------------------- |
+|     POST      | api/invoiceCreate/     |              create new Invoice                 |
+|     POST      | api/contactCreate/     |              create new Contact                 |
+|     PUT       | api/contactUpdate/_id  |            update existing Contact              |
+|     PUT       | api/contactSuggest/    | suggest existing Contacts with confidence ratio |
