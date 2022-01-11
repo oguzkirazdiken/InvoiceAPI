@@ -28,7 +28,7 @@ python3 -m venv env
 source env/bin/activate
 ```
 
-Change current working directory to the directory where requirements.txt is located and run the following cone in your shell.
+Change current working directory to the directory where requirements.txt is located and run the following code in your shell.
 
 ```python
 cd InvoiceApi
@@ -46,6 +46,7 @@ python3 manage.py migrate
 ```python
 python3 manage.py runserver
 ```
+
 ### Data Ingestion
 
 Example payload for creating invoice:
