@@ -103,7 +103,7 @@ Updating and creating contact has the same payload type but should be requested 
 |    Methods    |         Urls                    |
 | ------------- | ------------------------------  |
 |     POST      | api/contactCreate/              |
-|     PUT       | api/contactUpdate/845ec3d17501  |
+|     PUT       | api/contactUpdate/845ec3d17501/ |
 
 
 ### Contact Suggestion
