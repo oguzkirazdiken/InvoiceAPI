@@ -109,6 +109,11 @@ Updating and creating contact has the same payload type but should be requested 
 ### Contact Suggestion
 Payload for the contact suggestion endpoint needs to have two parts. `contactName` can be a partial input for any name and `organization` is a company representitive Id string. The aim of the endpoint is returning the most equivalent contacts with some certain confidence ratio.
 
+|    Methods    |         Urls           |                    Actions                      |
+| ------------- | ---------------------  | ----------------------------------------------- |
+|     GET       | api/contactSuggest/    | suggest existing Contacts with confidence ratio |
+
+
 GET Request Payload:
 
 ```json
