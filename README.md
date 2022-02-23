@@ -161,6 +161,10 @@ There are two different case classes at `tests.py`.
 `InvoiceCreateAPITest` is checking the insert operations for invoice collection.
 `ContactUpdateAPITest` checks whether the update operation performed is correct.
 
+```python
+python3 manage.py test
+```
+
 ```bash
 Using a test mongo database
 Found 2 test(s).
