@@ -14,6 +14,12 @@ def invoice_create(request):
 
     if invoice_serializer.is_valid():
         invoice_serializer.save()
+    else:
+        emessage = invoice_serializer.errors
+        return Response({
+            'status': 'Bad request',
+            'message': emessage,
+        }, status=status.HTTP_400_BAD_REQUEST)
 
     return Response(invoice_serializer.data)
 
@@ -24,6 +30,12 @@ def contact_create(request):
 
     if contact_serializer.is_valid():
         contact_serializer.save()
+    else:
+        emessage = contact_serializer.errors
+        return Response({
+            'status': 'Bad request',
+            'message': emessage,
+        }, status=status.HTTP_400_BAD_REQUEST)
 
     return Response(contact_serializer.data)
 
@@ -34,7 +46,13 @@ def contact_update(request, pk):
     contact_serializer = ContactSerializer(contact, data=request.data)
     if contact_serializer.is_valid():
         contact_serializer.save()
-
+    else:
+        emessage = contact_serializer.errors
+        return Response({
+            'status': 'Bad request',
+            'message': emessage,
+        }, status=status.HTTP_400_BAD_REQUEST)
+    
     return Response(contact_serializer.data)
 
 

@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-h%)pu_(#8@ic==gb9+rdr-1y_+k0jert)#mhf56_8#8i4r$hi6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
 
 
 # Application definition
@@ -93,12 +93,12 @@ DATABASES = {
 MONGODB_DATABASES = {
     "default": {
         "name": "invoice_database",
-        "host": "localhost",
+        "host": "mongodb",
         "port": 27017
     },
     "test": {
         "name": "invoice_database_test",
-        "host": "localhost",
+        "host": "mongodb",
         "port": 27017,
     }
 }
