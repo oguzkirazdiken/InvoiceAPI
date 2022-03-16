@@ -13,39 +13,6 @@ The following table shows overview of the REST APIs:
 |     PUT       | api/contactUpdate/_id  |            update existing Contact              |
 |     GET       | api/contactSuggest/    | suggest existing Contacts with confidence ratio |
 
-### Installation
-
-To get the project up and running in your local, go to the file location you want to install and run the following command.
-
-```python
-git clone https://github.com/oguzkirazdiken/InvoiceAPI.git
-```
-
-It is highly recommended to run on virtual environment. Firstly, set your virtual env and activate it.
-
-```python
-python3 -m venv env
-source env/bin/activate
-```
-
-Change current working directory to the directory where requirements.txt is located and run the following code in your shell.
-
-```python
-cd InvoiceApi
-pip3 install -r requirements.txt
-```
-If you previously installed MongoDB and started to run a database on your local, the mongoengine itself starts a database instance automatically when you give the runserver command. To be sure, please check if you installed MongoDB and you have a running database. Helpful documentation [here](https://mongoing.com/docs/tutorial/install-mongodb-on-os-x.html).
-
-The mongoengine doesn't require any migration process like other MongoDB Connectors. But we have an spare SQLite database. So it is good to start with initial migration before running our Django Rest API.
-
-```python
-python3 manage.py makemigrations
-python3 manage.py migrate
-```
-
-```python
-python3 manage.py runserver
-```
 
 ### Data Ingestion
 
@@ -75,17 +42,6 @@ So the data model should be capable of storing collections that's why mongoengin
 
 The Invoice payload also consists of contact information. Additional `create` method is added to `InvoiceSerializer` to extract that data and store it in the contact collections.
 
-```python
-def create(self, validated_data):
-    contact_data = validated_data['contact']
-    invoice = Invoice.objects.create(**validated_data)
-    Contact.objects.create(**contact_data)
-    return invoice
-```
-
-Invoice creating process takes 63ms on average.
-
-
 Example payload for creating and updating contact:
 
 ```json
@@ -96,9 +52,6 @@ Example payload for creating and updating contact:
     "organization": "bc93b755a48f"
 }
 ```
-Updating contact takes 118ms on average.
-
-Updating and creating contact has the same payload type but should be requested for different URLs with different methods.
 
 |    Methods    |         Urls                    |
 | ------------- | ------------------------------  |
