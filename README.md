@@ -178,12 +178,6 @@ OK
 Destroying test database for alias 'default'...
 ```
 
-### For Further Study
-
-The project repository also has `docker-compose.yml` and `Dockerfile`. It runs inside a container without any error. However, I couldn't do any insert operation through the MongoDB. I'll find the reason and fix it.
-
-One of the constraints of the project was the insert and update times and their ratio. Create invoice process should be 30 times faster then updating a contact. I'll try find a faster create operation to solve the issue.
-
 
 
 
